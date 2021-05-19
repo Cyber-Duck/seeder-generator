@@ -1,0 +1,21 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Helpers\CreatesRecords;
+use Illuminate\Database\Seeder;
+
+class {{ class }} extends Seeder
+{
+    use CreatesRecords;
+
+    public function run()
+    {
+        $this->create();
+    }
+
+    private function createRecord(array $attributes = [])
+    {
+{{ eloquent }}
+    }
+}
