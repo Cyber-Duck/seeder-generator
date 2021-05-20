@@ -35,7 +35,7 @@ You will receive a response like:
 
 3. Generate the seeder:
 
-`php artisan cyber-duck:seeder:generate`
+`php artisan cyber-duck:seeder:generate [MySeederClassNameHere] [uuid-entry-here]`
 
 ## Configuration options
 
