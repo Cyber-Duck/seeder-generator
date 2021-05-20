@@ -12,7 +12,7 @@ class GetLastTelescopeEntryUuid extends Command
      *
      * @var string
      */
-    protected $signature = 'telescope:last-entry-uuid';
+    protected $signature = 'cyber-duck:telescope:last-entry-uuid';
 
     /**
      * The console command description.
