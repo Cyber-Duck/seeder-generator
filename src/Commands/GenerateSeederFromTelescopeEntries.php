@@ -13,7 +13,7 @@ class GenerateSeederFromTelescopeEntries extends Command
      *
      * @var string
      */
-    protected $signature = 'telescope:seeder {class} {uuid}';
+    protected $signature = 'cyber-duck:seeder:generate {class} {uuid}';
 
     /**
      * The console command description.

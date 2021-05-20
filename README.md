@@ -25,7 +25,7 @@ If you are NOT using the Laravel package auto-discovery feature, please add the 
 
 1. Run this command to get the last Telescope entry:
 
-`php artisan telescope:last-entry-uuid`
+`php artisan cyber-duck:telescope:last-entry-uuid`
 
 You will receive a response like:
 
@@ -35,7 +35,7 @@ You will receive a response like:
 
 3. Generate the seeder:
 
-`php artisan telescope:seeder`
+`php artisan cyber-duck:seeder:generate`
 
 ## Configuration options
 
