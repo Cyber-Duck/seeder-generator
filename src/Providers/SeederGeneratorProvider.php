@@ -20,6 +20,10 @@ class SeederGeneratorProvider extends ServiceProvider
                 GenerateSeederFromTelescopeEntries::class,
                 GetLastTelescopeEntryUuid::class,
             ]);
+
+            $this->publishes([
+                $this->packageRoot('config') => base_path('config'),
+            ], ['seeder-generator']);
         }
     }
 
