@@ -25,7 +25,11 @@ class EloquentGenerator
         $this->expectedVariables = Arr::get($config, 'expectedVariables', []);
         $this->morphVariables = Arr::get($config, 'morphVariables', []);
 
-        $this->availableModels = collect(Arr::get($config, 'availableModels') ?? $this->guessAvailableModels());
+        $this->availableModels = collect(Arr::get($config, 'availableModels'));
+
+        if ($this->availableModels->isEmpty()) {
+            $this->availableModels = $this->guessAvailableModels();
+        }
     }
 
     protected function guessAvailableModels()
@@ -33,8 +37,10 @@ class EloquentGenerator
         return collect(include(base_path('vendor/composer/autoload_classmap.php')))
             ->keys()
             ->filter(function ($model) {
-                return Str::contains($model, 'Models');
-            });
+                return Str::startsWith($model, 'App\\')
+                    && Str::contains($model, 'Models');
+            })
+            ->values();
     }
 
     public function generate($query)
@@ -73,7 +79,7 @@ class EloquentGenerator
         return "// {$entry->relatedModelDescription()}";
     }
 
-    private function instruction($query): string
+    private function instruction(Query $query): string
     {
         $model = $this->guessModelFQN($this->getModelName($query->table));
 
