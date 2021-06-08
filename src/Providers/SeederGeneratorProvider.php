@@ -32,7 +32,7 @@ class SeederGeneratorProvider extends ServiceProvider
         $this->app->singleton(EloquentGenerator::class, function (Application $app) {
             return new EloquentGenerator(
                 new QueryParser,
-                $app->make('config')->get('cyber-duck', [])
+                $app->make('config')->get('seeder-generator', [])
             );
         });
     }
