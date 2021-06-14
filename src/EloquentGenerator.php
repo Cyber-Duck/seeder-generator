@@ -34,7 +34,13 @@ class EloquentGenerator
 
     protected function guessAvailableModels()
     {
-        return collect(include(base_path('vendor/composer/autoload_classmap.php')))
+        $classMapPath = base_path('vendor/composer/autoload_classmap.php');
+
+        if (! file_exists($classMapPath)) {
+            return collect();
+        }
+
+        return collect(include($classMapPath))
             ->keys()
             ->filter(function ($model) {
                 return Str::startsWith($model, 'App\\')
@@ -43,25 +49,21 @@ class EloquentGenerator
             ->values();
     }
 
-    public function generate($query)
+    public function generate($entries)
     {
         $this->models = [];
 
-        if (is_string($query)) {
-            return $this->generateOne($query);
-        }
-
-        return collect($query)
-            ->map(fn($query) => $this->generateOne($query))
+        return collect($entries)
+            ->map(fn(Entry $entry) => $this->generateOne($entry))
             ->join("\n\n");
     }
 
-    private function generateOne($query)
+    public function generateOne(Entry $entry): string
     {
-        return $this->makeCode($this->queryParser->parse($query));
+        return $this->makeCode($this->queryParser->parse($entry));
     }
 
-    private function makeCode(Query $query)
+    private function makeCode(Query $query): string
     {
         return CodeFormatter::normalizeBlock([
             "// {$query->entry->sql}",

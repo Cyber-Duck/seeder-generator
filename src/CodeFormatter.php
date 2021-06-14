@@ -7,7 +7,7 @@ use InvalidArgumentException;
 
 class CodeFormatter
 {
-    public static function normalizeBlock($codeBlock)
+    public static function normalizeBlock($codeBlock): string
     {
         if (is_array($codeBlock)) {
             $codeBlock = collect($codeBlock);
