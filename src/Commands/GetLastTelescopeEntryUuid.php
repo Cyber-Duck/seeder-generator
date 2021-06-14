@@ -4,6 +4,7 @@ namespace CyberDuck\Seeder\Commands;
 
 use Illuminate\Console\Command;
 use Laravel\Telescope\Storage\EntryModel;
+use Laravel\Telescope\Telescope;
 
 class GetLastTelescopeEntryUuid extends Command
 {
@@ -38,6 +39,8 @@ class GetLastTelescopeEntryUuid extends Command
      */
     public function handle()
     {
+        Telescope::stopRecording();
+
         $entry = EntryModel::latest()->first();
 
         if ($entry == null) {

@@ -5,6 +5,7 @@ namespace CyberDuck\Seeder\Commands;
 use CyberDuck\Seeder\SeederGenerator;
 use CyberDuck\Seeder\TelescopeExporter;
 use Illuminate\Console\Command;
+use Laravel\Telescope\Telescope;
 
 class GenerateSeederFromTelescopeEntries extends Command
 {
@@ -39,6 +40,8 @@ class GenerateSeederFromTelescopeEntries extends Command
      */
     public function handle()
     {
+        Telescope::stopRecording();
+
         app(SeederGenerator::class)->generate($this->argument('class'), $this->queries());
 
         $this->line("Seeder <info>{$this->argument('class')}</info> generated!");
