@@ -30,7 +30,7 @@ class SeederGenerator
 
     public function path($className)
     {
-        return database_path("seeders/{$className}.php");
+        return config('seeder-generator.seeders_directory', database_path('seeders/'))."{$className}.php";
     }
 
     public function generateCode($className, Collection $queries)
