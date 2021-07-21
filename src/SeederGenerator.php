@@ -7,8 +7,15 @@ use Illuminate\Support\Collection;
 
 class SeederGenerator
 {
-    protected Filesystem $files;
-    private EloquentGenerator $eloquentGenerator;
+    /**
+     * @var Filesystem
+     */
+    protected $files;
+
+    /**
+     * @var EloquentGenerator
+     */
+    private $eloquentGenerator;
 
     public function __construct(Filesystem $files, EloquentGenerator $eloquentGenerator)
     {

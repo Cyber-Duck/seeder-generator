@@ -4,9 +4,20 @@ namespace CyberDuck\Seeder;
 
 class Where
 {
-    public string $field;
-    public string $expr;
-    public string $value;
+    /**
+     * @var string|void
+     */
+    public $field;
+
+    /**
+     * @var string|void
+     */
+    public $expr;
+
+    /**
+     * @var string|void
+     */
+    public $value;
 
     public function __construct(string $field, string $expr, string $value)
     {

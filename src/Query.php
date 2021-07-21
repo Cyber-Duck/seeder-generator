@@ -6,15 +6,30 @@ use Illuminate\Support\Collection;
 
 class Query
 {
-    public Entry $entry;
+    /**
+     * @var Entry
+     */
+    public $entry;
 
-    public string $type;
+    /**
+     * @var string
+     */
+    public $type;
 
-    public string $table;
+    /**
+     * @var string
+     */
+    public $table;
 
-    public Collection $fields;
+    /**
+     * @var Collection
+     */
+    public $fields;
 
-    public Collection $conditions;
+    /**
+     * @var Collection
+     */
+    public $conditions;
 
     public function __construct(array $attributes)
     {
