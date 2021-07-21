@@ -71,7 +71,7 @@ class TelescopeExporter
     {
         return EntryModel::query()
             ->where('type', 'query')
-            ->when($sequence, function ($q, $sequence) use ($sequence) {
+            ->when($sequence, function ($q, $sequence) {
                 return $q->where('sequence', '>', $sequence);
             })
             ->orderBy('sequence', 'ASC')

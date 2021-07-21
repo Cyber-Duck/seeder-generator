@@ -64,7 +64,7 @@ class SeederGenerator
     {
         return collect($variables)
             ->keys()
-            ->map(function($field) {
+            ->map(function ($field) {
                 return "{{ {$field} }}";
             })
             ->all();
