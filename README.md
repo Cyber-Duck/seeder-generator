@@ -31,7 +31,7 @@ You will receive a response like:
 
 > The last entry uuid is: 937a170d-1aa2-495c-92e2-33389841bab5 (2021-05-20 15:50:20)
 
-2. Reproduce the steps you want to reproduce (by interacting with the app manually or automatically with Cypress, Laravel Dusk, etc.)
+2. Perform the steps you want to reproduce (by interacting with the app manually or automatically with Cypress, Laravel Dusk, etc.)
 
 3. Generate the seeder:
 
