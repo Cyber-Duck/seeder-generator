@@ -3,8 +3,8 @@
     "description": "Generate seeders automatically from Laravel Telescope",
     "type": "library",
     "require": {
-        "laravel/framework": "^8.0",
-        "laravel/telescope": "^4.0",
+        "laravel/framework": "^6.0|^8.0",
+        "laravel/telescope": "^3.0|^4.0",
         "php": "^7.4",
         "phpmyadmin/sql-parser": "^5.4"
     },
