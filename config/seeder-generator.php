@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'seeders_directory' => database_path('seeders/'),
     'tablesDictionary' => [],
     'expectedVariables' => [],
     'morphVariables' => [],
