@@ -32,4 +32,14 @@ class SeederGeneratorTest extends TestCase
 
         $this->assertSnapshotMatches('code', $code);
     }
+
+    /** @test */
+    function parses_in_expressions()
+    {
+        $code = $this->seederGenerator->generateCode('BasicSeeder', collect([
+            new Entry("delete from `posts` where `status` in ('draft', 'archived')"),
+        ]));
+
+        $this->assertSnapshotMatches('delete-in', $code);
+    }
 }

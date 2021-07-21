@@ -153,7 +153,14 @@ class EloquentGenerator
 
     private function wheres(Query $query): array
     {
-        return $query->conditions->map(function ($where) use ($query) {
+        return $query->conditions->map(function (Where $where) use ($query) {
+            if ($where->expr == 'in') {
+                return sprintf(
+                    "->whereIn('%s', [%s])",
+                    $where->field, trim($where->value, '()')
+                );
+            }
+
             return sprintf(
                 "->where('%s', '%s', %s)",
                 $where->field, $where->expr, $this->transformValue($query, $where->field, $where->value),

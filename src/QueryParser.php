@@ -130,6 +130,10 @@ class QueryParser
                     return null;
                 }
 
+                if (strpos($expr, 'in')) {
+                    return $this->parseWhereWithSimpleExpr($expr, 'in', 'in');
+                }
+
                 if (strpos($expr, '=')) {
                     return $this->parseWhereWithSimpleExpr($expr, '=', '=');
                 }
