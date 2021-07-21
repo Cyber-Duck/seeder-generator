@@ -10,12 +10,26 @@ use InvalidArgumentException;
 class EloquentGenerator
 {
     protected $tablesDictionary = [];
-    protected array $expectedVariables = [];
-    protected array $morphVariables = [];
 
-    private QueryParser $queryParser;
+    /**
+     * @var array
+     */
+    protected $expectedVariables = [];
 
-    protected Collection $availableModels;
+    /**
+     * @var array
+     */
+    protected $morphVariables = [];
+
+    /**
+     * @var QueryParser
+     */
+    private $queryParser;
+
+    /**
+     * @var Collection
+     */
+    protected $availableModels;
 
     public function __construct(QueryParser $queryParser, array $config = [])
     {

@@ -7,10 +7,19 @@ use Laravel\Telescope\Storage\EntryModel;
 
 class Entry
 {
-    public string $sql;
+    /**
+     * @var string
+     */
+    public $sql;
 
-    public ?string $relatedModel = null;
-    public ?string $relatedAction = null;
+    /**
+     * @var string|null
+     */
+    public $relatedModel = null;
+    /**
+     * @var string|null
+     */
+    public $relatedAction = null;
 
     public function __construct($entry, ?EntryModel $relatedModel = null)
     {
