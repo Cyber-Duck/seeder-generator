@@ -19,7 +19,9 @@ class TelescopeExporter
         }
 
         return $this->getDataManipulationEntries($sequence)
-            ->map(fn (EntryModel $entry) => $this->mapEntry($entry))
+            ->map(function (EntryModel $entry) {
+                return $this->mapEntry($entry);
+            })
             ->values();
     }
 
@@ -69,7 +71,9 @@ class TelescopeExporter
     {
         return EntryModel::query()
             ->where('type', 'query')
-            ->when($sequence, fn($q, $sequence) => $q->where('sequence', '>', $sequence))
+            ->when($sequence, function ($q, $sequence) use ($sequence) {
+                return $q->where('sequence', '>', $sequence);
+            })
             ->orderBy('sequence', 'ASC')
             ->get();
     }

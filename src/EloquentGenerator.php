@@ -9,6 +9,9 @@ use InvalidArgumentException;
 
 class EloquentGenerator
 {
+    /**
+     * @var array
+     */
     protected $tablesDictionary = [];
 
     /**
@@ -68,7 +71,9 @@ class EloquentGenerator
         $this->models = [];
 
         return collect($entries)
-            ->map(fn(Entry $entry) => $this->generateOne($entry))
+            ->map(function(Entry $entry) {
+                return $this->generateOne($entry);
+            })
             ->join("\n\n");
     }
 
@@ -148,17 +153,21 @@ class EloquentGenerator
 
     private function wheres(Query $query): array
     {
-        return $query->conditions->map(fn ($where) => sprintf(
-            "->where('%s', '%s', %s)",
-            $where->field, $where->expr, $this->transformValue($query, $where->field, $where->value),
-        ))->all();
+        return $query->conditions->map(function ($where) use ($query) {
+            return sprintf(
+                "->where('%s', '%s', %s)",
+                $where->field, $where->expr, $this->transformValue($query, $where->field, $where->value),
+            );
+        })->all();
     }
 
     private function fields(Query $query): string
     {
-        return CodeFormatter::indent(1, $query->fields->map(fn ($value, $field) => sprintf(
-            "'%s' => %s,", $field, $this->transformValue($query, $field, $value)
-        )));
+        return CodeFormatter::indent(1, $query->fields->map(function ($value, $field) use ($query) {
+            return sprintf(
+                "'%s' => %s,", $field, $this->transformValue($query, $field, $value)
+            );
+        }));
     }
 
     private function closeMethod()
@@ -174,7 +183,9 @@ class EloquentGenerator
 
     private function guessModelFQN($model)
     {
-        return '\\'.$this->availableModels->first(fn ($class) => Str::endsWith($class, $model), $model);
+        return '\\'.$this->availableModels->first(function ($class) use ($model) {
+            return Str::endsWith($class, $model);
+        }, $model);
     }
 
     private function transformValue(Query $query, $field, $value): string

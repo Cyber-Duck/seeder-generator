@@ -122,7 +122,9 @@ class QueryParser
     private function getWheres($wheres)
     {
         return collect($wheres)
-            ->map(fn($where) => $where->expr)
+            ->map(function($where) {
+                return $where->expr;
+            })
             ->map(function($expr) {
                 if ($expr == 'AND') {
                     return null;
